@@ -1,0 +1,4 @@
+#! /bin/bash
+set -e 
+set -u
+erl -pa ./ebin -pa ./deps/*/ebin -s httpcbench_server start
