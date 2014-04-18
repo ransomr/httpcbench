@@ -15,3 +15,5 @@ build: deps
 deps:
 	$(REBAR) get-deps
 
+quick:
+	$(REBAR) compile skip_deps=true

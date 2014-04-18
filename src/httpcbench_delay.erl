@@ -6,7 +6,7 @@
          terminate/3
         ]).
 
-init({tcp, _}, Req, []) ->
+init(_, Req, []) ->
     {ok, Req, state}.
 
 handle(Req, state) ->

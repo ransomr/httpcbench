@@ -7,9 +7,8 @@
         {vsn, "0.1.0"},
         {applications, [kernel,
                         stdlib,
-                        httpc,
                         cowboy,
                         hackney]},
-        {mod, { httpcbenc_app, []}},
+        {mod, { httpcbench_app, []}},
         {env, []}
 ]}.
