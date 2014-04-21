@@ -10,11 +10,7 @@ responds after 10 ms.
 
 Results show results at 100 iterations (100,000 connections).
 
-rt = runtime
-
-ct = wall_clock
-
-| Client | rt | ct | mem | failures |
+| Client | runtime | wall_clock | mem | failures |
 | ------ | --:| --:| ---:| --------:|
 | hackney (default pool) | 127340 | 317962 | 16.905 | 0 |
 | httpc | 41170 | 95313 | 114.466 | 336 |
