@@ -4,6 +4,7 @@
 
 -export([hackney/0,
          httpc/0,
+         ibrowse/0,
          lhttpc/0]).
 
 -define(CALLS, 1000).
@@ -111,3 +112,23 @@ lhttpc_get() ->
                                            {cacertfile, "./priv/ssl/rootCA.pem"}
                                           ]}]),
     ok.
+
+ibrowse() ->
+    {ok, _} = application:ensure_all_started(ssl),
+    {ok, _} = ibrowse:start(),
+    ok = test(fun ibrowse_get/0),
+    io:format("Done~n"),
+    ok.
+
+ibrowse_get() ->
+    case ibrowse:send_req("https://localhost:8443/delay", [], get, [],
+                          [{ssl_options, [{verify, verify_peer},
+                                          {cacertfile, "./priv/ssl/rootCA.pem"}
+                                         ]}],
+                          infinity) of
+        {ok, "200", _, _} ->
+            ok;
+        {error, retry_later} ->
+            timer:sleep(1),
+            ibrowse_get()
+    end.
