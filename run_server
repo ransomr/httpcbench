@@ -1,4 +1,4 @@
 #! /bin/bash
 set -e 
 set -u
-erl -pa ./ebin -pa ./deps/*/ebin -s httpcbench_server start
+erl -smp enable +K true +P 524288 -pa ./ebin -pa ./deps/*/ebin -s httpcbench_server start

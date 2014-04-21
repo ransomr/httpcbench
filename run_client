@@ -1,0 +1,10 @@
+#! /bin/bash
+set -e 
+
+CLIENT=hackney
+if [ -n "$1" ]
+then
+    CLIENT=$1
+fi
+ 
+erl -smp enable +K true +P 524288 -pa ./ebin -pa ./deps/*/ebin -s httpcbench_client $CLIENT

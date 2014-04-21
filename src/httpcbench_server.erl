@@ -14,7 +14,7 @@ start() ->
     Dispatch = cowboy_router:compile(Routes),
     {ok, _} = cowboy:start_https(talko_redirect, 100,
                                  [{port, 8443},
-                                  {cacertfile, PrivDir ++ "/ssl/rootCA.pem"},
+                                  {cacertfile, PrivDir ++ "/ssl/server.crt"},
                                   {certfile, PrivDir ++ "/ssl/server.crt"},
                                   {keyfile, PrivDir ++ "/ssl/server.key"}],
                                  [{env, [{dispatch, Dispatch}]}]),
