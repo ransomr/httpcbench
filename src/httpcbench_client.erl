@@ -4,6 +4,7 @@
 
 -export([hackney/0,
          httpc/0,
+         httpc_opt/0,
          ibrowse/0,
          lhttpc/0]).
 
@@ -86,12 +87,28 @@ hackney_get() ->
 httpc() ->
     {ok, _} = application:ensure_all_started(inets),
     {ok, _} = application:ensure_all_started(ssl),
-    httpc:set_options([{max_sessions, 100}]),
     ok = test(fun httpc_get/0),
     io:format("Done~n"),
     ok.
 
 httpc_get() ->
+    {ok, {{_, 200, _}, _, _}} =
+        httpc:request(get, {"https://localhost:8443/delay", []}, 
+                      [{ssl, [{verify, verify_peer},
+                              {cacertfile, "./priv/ssl/rootCA.pem"}
+                             ]}], 
+                      []),
+    ok.
+
+httpc_opt() ->
+    {ok, _} = application:ensure_all_started(inets),
+    {ok, _} = application:ensure_all_started(ssl),
+    httpc:set_options([{max_sessions, 100}]),
+    ok = test(fun httpc_opt_get/0),
+    io:format("Done~n"),
+    ok.
+
+httpc_opt_get() ->
     {ok, {{_, 200, _}, _, _}} =
         httpc:request(get, {"https://localhost:8443/delay", []}, 
                       [{ssl, [{verify, verify_peer},

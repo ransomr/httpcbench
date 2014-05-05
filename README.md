@@ -12,12 +12,15 @@ Results show results at 100 iterations (100,000 connections).
 
 | Client | runtime | wall_clock | mem | failures |
 | ------ | --:| --:| ---:| --------:|
-| hackney (default pool) | 127340 | 317962 | 16.905 | 0 |
-| httpc | 41170 | 95313 | 114.466 | 336 |
-| ibrowse | 100640 | 116245 | 14.762 | 33 |
-| lhttpc | 20680 | 29901 | 10.954 | 0 |
+| hackney (default pool) | 132130 | 341328 | 14.886 | 0 |
+| httpc | 26000 | 28786 | 52.903 | 3 |
+| httpc (optimized) | 25750 | 29578 | 52.799 | 0 |
+| ibrowse | 100170 | 117804 | 16.599 | 0 |
+| lhttpc | 20430 | 28712 | 12.937 | 0 |
 
-Results are from an Ubuntu 12.04 VM with 6 cores running on a 2013 MacBook Pro.
+Results are from Erlang 17.0. Running on Ubuntu 12.04 VM with 6 cores running on a 2013 MacBook Pro.
+
+httpc performs MUCH worse if {max_keepalive, infinity} is not set on the server.
 
 ## Running the tests ##
 
