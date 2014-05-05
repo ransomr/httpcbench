@@ -17,5 +17,5 @@ start() ->
                                   {cacertfile, PrivDir ++ "/ssl/server.crt"},
                                   {certfile, PrivDir ++ "/ssl/server.crt"},
                                   {keyfile, PrivDir ++ "/ssl/server.key"}],
-                                 [{env, [{dispatch, Dispatch}]}]),
+                                 [{env, [{dispatch, Dispatch}]}, {max_keepalive, infinity}]),
     ok.
