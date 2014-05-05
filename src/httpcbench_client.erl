@@ -86,6 +86,7 @@ hackney_get() ->
 httpc() ->
     {ok, _} = application:ensure_all_started(inets),
     {ok, _} = application:ensure_all_started(ssl),
+    httpc:set_options([{max_sessions, 100}]),
     ok = test(fun httpc_get/0),
     io:format("Done~n"),
     ok.
