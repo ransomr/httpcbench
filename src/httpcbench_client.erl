@@ -134,6 +134,8 @@ lhttpc_get() ->
 ibrowse() ->
     {ok, _} = application:ensure_all_started(ssl),
     {ok, _} = ibrowse:start(),
+    ibrowse:set_max_pipeline_size("localhost", 8443, 1),
+    ibrowse:set_max_sessions("localhost", 8443, 300),
     ok = test(fun ibrowse_get/0),
     io:format("Done~n"),
     ok.
