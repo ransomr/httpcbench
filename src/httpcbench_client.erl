@@ -6,6 +6,7 @@
          httpc/0,
          httpc_opt/0,
          ibrowse/0,
+         ibrowse_opt/0,
          lhttpc/0]).
 
 -define(CALLS, 1000).
@@ -132,6 +133,13 @@ lhttpc_get() ->
     ok.
 
 ibrowse() ->
+    {ok, _} = application:ensure_all_started(ssl),
+    {ok, _} = ibrowse:start(),
+    ok = test(fun ibrowse_get/0),
+    io:format("Done~n"),
+    ok.
+
+ibrowse_opt() ->
     {ok, _} = application:ensure_all_started(ssl),
     {ok, _} = ibrowse:start(),
     ibrowse:set_max_pipeline_size("localhost", 8443, 1),
