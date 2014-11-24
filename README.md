@@ -12,14 +12,14 @@ Results show results at 100 iterations (100,000 connections).
 
 | Client | runtime | wall_clock | mem | failures |
 | ------ | --:| --:| ---:| --------:|
-| hackney (default pool) | 182640 | 152840 | 22.292 | 0 |
-| httpc | 25270 | 29243 | 52.063 | 0 |
-| httpc (optimized) | 26300 | 28873 | 42.440 | 0 |
-| ibrowse | 112650 | 115722 | 14.551 | 0 |
-| ibrowse (optimized) | 20680 | 26067 | 53.450 | 0 |
-| lhttpc | 19550 | 29043 | 14.814 | 0 |
+| hackney (default pool) | 38560 | 30912 | 16.110 | 0 |
+| httpc | 34080 | 27913 | 54.083 | 0 |
+| httpc (optimized) | 33540 | 26981 | 55.402 | 0 |
+| ibrowse | 212720 | 112853 | 14.567 | 0 |
+| ibrowse (optimized) | 22410 | 21029 | 59.849 | 0 |
+| lhttpc | 27820 | 29276 | 12.893 | 0 |
 
-Results are from Erlang 17.0. Running on Ubuntu 12.04 VM with 6 cores running on a 2013 MacBook Pro.
+Results are from Erlang 17.2.1. Running on Ubuntu 12.04 VM with 4 cores running on a 2013 MacBook Pro.
 
 httpc performs MUCH worse if {max_keepalive, infinity} is not set on the server.
 
